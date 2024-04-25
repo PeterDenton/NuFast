@@ -17,5 +17,10 @@ If a user requires a python code, we recommend the use of cython, f2py, or somet
 ### Benchmark
 The benchmark folder contains the same code in a slightly different structure, as well as some other neutrino oscillation probability codes. It computes the precision of the **NuFast** algorithm and also benchmarks the computational speed.
 
+### GLoBES
+The included `GLoBES` code is adapted from the well known GLoBES code at [https://www.mpi-hd.mpg.de/personalhomes/globes/index.html](https://www.mpi-hd.mpg.de/personalhomes/globes/index.html). If that portion of the code is used, please cite them as appropriate.
+
+Running the GLoBES code requires GSL. The makefile should work fine if it is installed in a typical Linux system.
+
 ### Usage
 If you use this code, please cite the associated paper [arXiv:2404.xxxxx](https://arxiv.org/abs/2404.xxxxx) by Peter Denton and Stephen Parke. Please also let us know if you find any bugs or further optimizations or if you run your own speed tests.

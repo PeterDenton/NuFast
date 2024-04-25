@@ -63,7 +63,7 @@ int main()
 	int m, n;
 
 	m = 1e3;
-	n = 1e5;
+	n = 1e3;
 
 	speed_sum = 0;
 	speedsq_sum = 0;
