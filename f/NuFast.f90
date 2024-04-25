@@ -316,12 +316,12 @@ program NuFast
     ! --------------------------- !
     ! Print out the probabilities !
     ! --------------------------- !
-    write (*,*) "L = ", L, " E = ", E, " rho = ", rho
+    write (*,"(3(A,F10.2))") "L = ", L, " E = ", E, " rho = ", rho
     write (*,*) "Probabilities:"
     write (*,*) "alpha beta P(nu_alpha -> nu_beta)"
     do alpha = 1, 3
         do beta = 1, 3
-            write (*,*) alpha, beta, probs_returned(alpha, beta)
+            write (*,"(2I3,F10.6)") alpha, beta, probs_returned(alpha, beta)
         end do ! beta, 1, 3
     end do ! alpha, 1, 3
 

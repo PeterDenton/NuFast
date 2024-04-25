@@ -19,7 +19,7 @@ Objects=$(filter-out $(addprefix obj/,$(Executables:=.o)),$(AllObjects))
 all: $(Sources) $(Executables)
 
 $(Executables): $(AllObjects)
-	@mkdir -p data obj fig
+	@mkdir -p data obj
 	$(CXX) $(Objects) $(addprefix obj/,$@.o) $(GSLFlags) $(OMPFlags) -o $@
 
 obj/%.o: src/%.c

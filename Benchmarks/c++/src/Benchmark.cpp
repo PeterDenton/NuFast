@@ -104,7 +104,7 @@ int main()
 	// ------------------------------- //
 	// Print out the fractional errors //
 	// ------------------------------- //
-	printf("L = %g E = %g rho = %g Ye = %g\n", L, E, rho, Ye);
+	printf("L = %g E = %g rho = %g Ye = %g N_Newton = %d\n", L, E, rho, Ye, N_Newton);
 	printf("Precision:\n");
 	printf("alpha beta DeltaP/P\n");
 	for (int alpha = 0; alpha < 3; alpha++)

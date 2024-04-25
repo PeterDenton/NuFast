@@ -123,7 +123,7 @@ program Benchmark
     ! ------------------------------- !
     ! Print out the fractional errors !
     ! ------------------------------- !
-    write (*,"(A,F8.1,A,F5.2,A,F5.2,A,F5.2)") "L = ", L, " E = ", E, " rho = ", rho, " Ye = ", Ye
+    write (*,"(A,F8.1,A,F5.2,A,F5.2,A,F5.2,A,I1)") "L = ", L, " E = ", E, " rho = ", rho, " Ye = ", Ye, " N_Newton = ", N_Newton
     write (*,*) "Precision:"
     write (*,"(A6,A5,A10)") "alpha", "beta", "DeltaP/P"
     do alpha = 1, 3
