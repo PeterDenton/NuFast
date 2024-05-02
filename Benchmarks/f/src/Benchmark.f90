@@ -124,7 +124,7 @@ program Benchmark
     ! Print out the fractional errors !
     ! ------------------------------- !
     write (*,"(A,F8.1,A,F5.2,A,F5.2,A,F5.2,A,I1)") "L = ", L, " E = ", E, " rho = ", rho, " Ye = ", Ye, " N_Newton = ", N_Newton
-    write (*,*) "Precision:"
+    write (*,"(A,I1,A)") "Precision (N_Newton = ", N_Newton, "):"
     write (*,"(A6,A5,A10)") "alpha", "beta", "DeltaP/P"
     do alpha = 1, 3
         do beta = 1, 3
@@ -137,12 +137,12 @@ program Benchmark
     ! Write the fractional errors to file !
     ! ----------------------------------- !
     n = 1e3
-    ! Accelerator !
+    ! DUNE !
     Emin = 0.5
     Emax = 5
     Estep = (Emax - Emin) / n
-    open (newunit = dataf, file = "data/Precision_accelerator.txt", status = "replace", action = "write")
-    write (dataf, *) L, rho, Ye, N_Newton
+    open (newunit = dataf, file = "data/Precision_DUNE.txt", status = "replace", action = "write")
+    write (dataf, *) L, rho, Ye
     do i = 0, n
         E = Emin + i * Estep
         call Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, N_Newton, probs_returned)
@@ -153,18 +153,35 @@ program Benchmark
     end do ! i
     close (dataf)
 
-    ! Reactor !
-    L = 50
-    rho = 2.6
-    Emin = 1e-3
-    Emax = 5e-3
+    ! HK !
+    L = 295
+    Emin = 0.1
+    Emax = 2
     Estep = (Emax - Emin) / n
-    open (newunit = dataf, file = "data/Precision_reactor.txt", status = "replace", action = "write")
-    write (dataf, *) L, rho, Ye, N_Newton
+    open (newunit = dataf, file = "data/Precision_HK.txt", status = "replace", action = "write")
+    write (dataf, *) L, rho, Ye
     do i = 0, n
         E = Emin + i * Estep
         call Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, N_Newton, probs_returned)
         call Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &
+                                                probs_returned_Exact_Cubic)
+        write (dataf, *) E, ABS(probs_returned(2, 2) - probs_returned_Exact_Cubic(2, 2)) / probs_returned_Exact_Cubic(2, 2), &
+                 ABS(probs_returned(2, 1) - probs_returned_Exact_Cubic(2, 1)) / probs_returned_Exact_Cubic(2, 1)
+    end do ! i
+    close (dataf)
+
+    ! JUNO !
+    L = 50
+    rho = 2.6
+    Emin = 1e-3
+    Emax = 10e-3
+    Estep = (Emax - Emin) / n
+    open (newunit = dataf, file = "data/Precision_JUNO.txt", status = "replace", action = "write")
+    write (dataf, *) L, rho, Ye, N_Newton
+    do i = 0, n
+        E = Emin + i * Estep
+        call Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, -E, rho, Ye, N_Newton, probs_returned)
+        call Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, -E, rho, Ye, 0, &
                                                 probs_returned_Exact_Cubic)
         write (dataf, *) E, ABS(probs_returned(1, 1) - probs_returned_Exact_Cubic(1, 1)) / probs_returned_Exact_Cubic(1, 1)
     end do ! i

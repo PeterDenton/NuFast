@@ -2,7 +2,7 @@ MAKEFLAGS=--jobs=1
 
 Compiler=gfortran
 
-FFlags=-pedantic -Wall
+FFlags=-pedantic -Wall -Wno-unused-dummy-argument
 FFlags+=-O5 -ffast-math # can improve speed by 10s of percent over the default of -O0
 FFlags+=-fdefault-real-8 # set the precision of reals. commenting this out sets it to 4 (single precision: fastest and enough precision), 8 is double precision (best), 16 is quadruple precision (much slower, but fun to check)
 Sources=src/Benchmark.f90 src/NuFast.f90 src/Exact_Cubic.f90

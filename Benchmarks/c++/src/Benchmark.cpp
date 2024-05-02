@@ -105,7 +105,7 @@ int main()
 	// Print out the fractional errors //
 	// ------------------------------- //
 	printf("L = %g E = %g rho = %g Ye = %g N_Newton = %d\n", L, E, rho, Ye, N_Newton);
-	printf("Precision:\n");
+	printf("Precision (N_Newton = %d):\n", N_Newton);
 	printf("alpha beta DeltaP/P\n");
 	for (int alpha = 0; alpha < 3; alpha++)
 	{
@@ -119,34 +119,60 @@ int main()
 	// Write the fractional errors to file //
 	// ----------------------------------- //
 	n = 1e3;
-	// Accelerator //
+	// DUNE //
 	Emin = 0.5;
 	Emax = 5;
 	Estep = (Emax - Emin) / n;
-	FILE *dataf = fopen("data/Precision_accelerator.txt", "w");
-	fprintf(dataf, "%g %g %g %d\n", L, rho, Ye, N_Newton);
+	FILE *dataf = fopen("data/Precision_DUNE.txt", "w");
+	fprintf(dataf, "%g %g %g\n", L, rho, Ye);
 	for (int i = 0; i <= n; i++)
 	{
 		E = Emin + i * Estep;
-		Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, N_Newton, &probs_returned);
-		Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned_Exact_Cubic);
-		fprintf(dataf, "%g %g %g\n", E, fabs(probs_returned[1][1] - probs_returned_Exact_Cubic[1][1]) / probs_returned_Exact_Cubic[1][1], fabs(probs_returned[1][0] - probs_returned_Exact_Cubic[1][0]) / probs_returned_Exact_Cubic[1][0]);
+		fprintf(dataf, "%g ", E);
+		for (int j = 0; j < 2; j++)
+		{
+			Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, j, &probs_returned);
+			Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned_Exact_Cubic);
+			fprintf(dataf, "%g %g ", fabs(probs_returned[1][1] - probs_returned_Exact_Cubic[1][1]) / probs_returned_Exact_Cubic[1][1], fabs(probs_returned[1][0] - probs_returned_Exact_Cubic[1][0]) / probs_returned_Exact_Cubic[1][0]);
+		} // j, N_Newton, 2
+		fprintf(dataf, "\n");
 	} // i, E, n
 	fclose(dataf);
 
-	// Reactor //
+	// HK //
+	L = 295;
+	Emin = 0.1;
+	Emax = 2;
+	Estep = (Emax - Emin) / n;
+	dataf = fopen("data/Precision_HK.txt", "w");
+	fprintf(dataf, "%g %g %g\n", L, rho, Ye);
+	for (int i = 0; i <= n; i++)
+	{
+		E = Emin + i * Estep;
+		fprintf(dataf, "%g ", E);
+		for (int j = 0; j < 2; j++)
+		{
+			Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, j, &probs_returned);
+			Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned_Exact_Cubic);
+			fprintf(dataf, "%g %g ", fabs(probs_returned[1][1] - probs_returned_Exact_Cubic[1][1]) / probs_returned_Exact_Cubic[1][1], fabs(probs_returned[1][0] - probs_returned_Exact_Cubic[1][0]) / probs_returned_Exact_Cubic[1][0]);
+		} // j, N_Newton, 2
+		fprintf(dataf, "\n");
+	} // i, E, n
+	fclose(dataf);
+
+	// JUNO //
 	L = 50;
 	rho = 2.6;
 	Emin = 1e-3;
-	Emax = 5e-3;
+	Emax = 10e-3;
 	Estep = (Emax - Emin) / n;
-	dataf = fopen("data/Precision_reactor.txt", "w");
+	dataf = fopen("data/Precision_JUNO.txt", "w");
 	fprintf(dataf, "%g %g %g %d\n", L, rho, Ye, N_Newton);
 	for (int i = 0; i <= n; i++)
 	{
 		E = Emin + i * Estep;
-		Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, N_Newton, &probs_returned);
-		Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned_Exact_Cubic);
+		Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, -E, rho, Ye, N_Newton, &probs_returned);
+		Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, -E, rho, Ye, 0, &probs_returned_Exact_Cubic);
 		fprintf(dataf, "%g %g\n", E, fabs(probs_returned[0][0] - probs_returned_Exact_Cubic[0][0]) / probs_returned_Exact_Cubic[0][0]);
 	} // i, E, n
 	fclose(dataf);
