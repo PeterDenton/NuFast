@@ -1,6 +1,6 @@
 | arXiv |
 |:-----:|
-|[![arXiv](https://img.shields.io/badge/arXiv-2404.xxxxx-orange.svg)](https://arXiv.org/abs/2404.xxxxx)|
+|[![arXiv](https://img.shields.io/badge/arXiv-2405.02400-orange.svg)](https://arXiv.org/abs/2405.02400)|
 
 # **NuFast**: A fast code for long-baseline neutrino oscillation probabilities in matter
 
@@ -23,4 +23,4 @@ The included `GLoBES` code is adapted from the well known GLoBES code at [https:
 Running the GLoBES code requires GSL. The makefile should work fine if it is installed in a typical Linux system.
 
 ### Usage
-If you use this code, please cite the associated paper [arXiv:2404.xxxxx](https://arxiv.org/abs/2404.xxxxx) by Peter Denton and Stephen Parke. Please also let us know if you find any bugs or further optimizations or if you run your own speed tests.
+If you use this code, please cite the associated paper [arXiv:2405.02400](https://arxiv.org/abs/2405.02400) by Peter Denton and Stephen Parke. Please also let us know if you find any bugs or further optimizations or if you run your own speed tests.
