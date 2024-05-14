@@ -5,6 +5,7 @@
 #include "NuFast.h"
 #include "Exact_Cubic.h"
 #include "Page.h"
+#include "DMP.h"
 
 // Some constants
 double const eVsqkm_to_GeV_over4 = 1e-9 / 1.97327e-7 * 1e3 / 4;
@@ -129,12 +130,15 @@ int main()
 	{
 		E = Emin + i * Estep;
 		fprintf(dataf, "%g ", E);
+		Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned_Exact_Cubic);
 		for (int j = 0; j < 2; j++)
 		{
 			Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, j, &probs_returned);
-			Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned_Exact_Cubic);
 			fprintf(dataf, "%g %g ", fabs(probs_returned[1][1] - probs_returned_Exact_Cubic[1][1]) / probs_returned_Exact_Cubic[1][1], fabs(probs_returned[1][0] - probs_returned_Exact_Cubic[1][0]) / probs_returned_Exact_Cubic[1][0]);
 		} // j, N_Newton, 2
+		// now do DMP
+		Probability_Matter_LBL_DMP(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned);
+		fprintf(dataf, "%g %g ", fabs(probs_returned[1][1] - probs_returned_Exact_Cubic[1][1]) / probs_returned_Exact_Cubic[1][1], fabs(probs_returned[1][0] - probs_returned_Exact_Cubic[1][0]) / probs_returned_Exact_Cubic[1][0]);
 		fprintf(dataf, "\n");
 	} // i, E, n
 	fclose(dataf);
@@ -150,12 +154,15 @@ int main()
 	{
 		E = Emin + i * Estep;
 		fprintf(dataf, "%g ", E);
+		Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned_Exact_Cubic);
 		for (int j = 0; j < 2; j++)
 		{
 			Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, j, &probs_returned);
-			Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned_Exact_Cubic);
 			fprintf(dataf, "%g %g ", fabs(probs_returned[1][1] - probs_returned_Exact_Cubic[1][1]) / probs_returned_Exact_Cubic[1][1], fabs(probs_returned[1][0] - probs_returned_Exact_Cubic[1][0]) / probs_returned_Exact_Cubic[1][0]);
 		} // j, N_Newton, 2
+		// now do DMP
+		Probability_Matter_LBL_DMP(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned);
+		fprintf(dataf, "%g %g ", fabs(probs_returned[1][1] - probs_returned_Exact_Cubic[1][1]) / probs_returned_Exact_Cubic[1][1], fabs(probs_returned[1][0] - probs_returned_Exact_Cubic[1][0]) / probs_returned_Exact_Cubic[1][0]);
 		fprintf(dataf, "\n");
 	} // i, E, n
 	fclose(dataf);
