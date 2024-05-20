@@ -9,8 +9,7 @@ double const YerhoE2a = 1.52e-4;
 // the matter effect in an optimized, fast, and efficient way. The precision can
 // be controlled with N_Newton. For many applications N_Newton=0 may be enough,
 // but many years of DUNE or HK-LBL may require N_Newton=1. This code may be
-// suitable for atmospheric neutrinos. The code is standalone with the Parameters
-// module for several constants.
+// suitable for atmospheric neutrinos. The code is standalone.
 //
 // Inputs:
 //   mixing angles (usual parameterization)
