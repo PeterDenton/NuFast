@@ -2,7 +2,7 @@ import numpy as np
 
 # Some constants
 eVsqkm_to_GeV_over4 = 1e-9 / 1.97327e-7 * 1e3 / 4
-YerhoE2a = 1.52e-4
+YerhoE2a = 1.52588e-4
 
 # Probability_Matter_LBL calculates all nine oscillation probabilities including
 # the matter effect in an optimized, fast, and efficient way. The precision can

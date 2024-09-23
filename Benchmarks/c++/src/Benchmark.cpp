@@ -9,7 +9,7 @@
 
 // Some constants
 double const eVsqkm_to_GeV_over4 = 1e-9 / 1.97327e-7 * 1e3 / 4;
-double const YerhoE2a = 1.52e-4;
+double const YerhoE2a = 1.52588e-4;
 double const oneThird = 1. / 3;
 
 // Compute the speed n times and calculate the mean over those n times

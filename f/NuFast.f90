@@ -1,7 +1,7 @@
 module Parameters
     implicit none
     real, parameter :: PI = 3.14159265358979323846264338327950288419716939937510
-    real, parameter :: YerhoE2a = 1.52e-4 ! Converts electron fraction times density (g/cc) times neutrino energy (GeV) to eV^2
+    real, parameter :: YerhoE2a = 1.52588e-4 ! Converts electron fraction times density (g/cc) times neutrino energy (GeV) to eV^2
     real, parameter :: eVsqkm_to_GeV_over4 = 1e-9 / 1.97327e-7 * 1e3 / 4
 end module Parameters
 
