@@ -97,7 +97,7 @@ int main()
 	N_Newton = 0; // <-- Sets the precision. 0 is close to the single precision limit and is better than DUNE/HK in the high statistics regime. Increasig N_Newton improves the precision at a modest computational cost
 
 	// ------------------------------------------ //
-	// Calculate all 9 oscillationa probabilities //
+	// Calculate all 9 oscillations probabilities //
 	// ------------------------------------------ //
 	Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, N_Newton, &probs_returned);
 	Probability_Matter_LBL_Exact_Cubic(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, 0, &probs_returned_Exact_Cubic);

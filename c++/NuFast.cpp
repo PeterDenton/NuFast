@@ -297,7 +297,7 @@ int main()
 	Dmsq31 = 2.5e-3; // eV^2
 
 	// ------------------------------------------ //
-	// Calculate all 9 oscillationa probabilities //
+	// Calculate all 9 oscillations probabilities //
 	// ------------------------------------------ //
 	Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, N_Newton, &probs_returned);
 
