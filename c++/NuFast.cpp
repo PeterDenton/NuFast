@@ -2,8 +2,8 @@
 #include <stdio.h>
 
 // Some constants
-double const eVsqkm_to_GeV_over4 = 1e-9 / 1.97327e-7 * 1e3 / 4;
-double const YerhoE2a = 1.52588e-4;
+constexpr double const eVsqkm_to_GeV_over4 = 1e-9 / 1.97327e-7 * 1e3 / 4;
+constexpr double const YerhoE2a = 1.52588e-4;
 
 // Probability_Matter_LBL calculates all nine oscillation probabilities including
 // the matter effect in an optimized, fast, and efficient way. The precision can
