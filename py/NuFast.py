@@ -260,7 +260,7 @@ if __name__ == "__main__":
 	# --------------------------------------------------------------------- #
 	# Set the number of Newton-Raphson iterations which sets the precision. #
 	# 0 is close to the single precision limit and is better than DUNE/HK   #
-	# in the high statistics regime. Increasig N_Newton to 1,2,... rapidly  #
+	# in the high statistics regime. Increasing N_Newton to 1,2,... rapidly #
 	# improves the precision at a modest computational cost                 #
 	# --------------------------------------------------------------------- #
 	N_Newton = 0
